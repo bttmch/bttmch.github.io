@@ -1,0 +1,136 @@
+:root {
+  color-scheme: light;
+  --tile-face: #ffffff;
+  --tile-edge: #d7d7d7;
+  --line: #ff3d4d;
+  --ink: #444;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background: #fff;
+  font-family: Inter, "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+
+button { font: inherit; }
+
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
+
+.button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(0, 0, 0, .16);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  transition: transform .18s, background .18s, box-shadow .18s;
+}
+
+.button:hover {
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .13);
+  transform: translateY(-1px);
+}
+
+.button:active { transform: translateY(1px); }
+
+.board {
+  width: 100%;
+  height: 100%;
+}
+
+.board svg {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, .08));
+  touch-action: manipulation;
+}
+
+.tile {
+  cursor: pointer;
+  outline: none;
+}
+
+.tile .tile-face {
+  fill: var(--tile-face);
+  stroke: var(--tile-edge);
+  stroke-width: 1.25;
+  transition: fill .18s, filter .18s;
+}
+
+.tile .track-shadow {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 8.5;
+  stroke-linecap: butt;
+}
+
+.tile .track-gap {
+  fill: none;
+  stroke: var(--tile-face);
+  stroke-width: 3.1;
+  stroke-linecap: butt;
+}
+
+.tile .tile-rotator {
+  transform-origin: 0 0;
+  transition: transform .24s cubic-bezier(.2, .8, .2, 1);
+}
+
+.tile:hover .tile-face,
+.tile:focus-visible .tile-face {
+  fill: #f5f5f5;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .16));
+}
+
+.tile:focus-visible .tile-face {
+  stroke: var(--line);
+  stroke-width: 2.5;
+}
+
+@media (max-width: 650px) {
+  .button {
+    top: 10px;
+    right: 10px;
+    min-height: 36px;
+    padding: 0 13px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
